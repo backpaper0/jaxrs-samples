@@ -15,8 +15,19 @@ public class HelloResourceTest extends JerseyTest {
 
     @Test
     public void testHelloWorld() throws Exception {
-        String response = target("hello").queryParam("name", "world").request()
+        String response =
+        //リクエストするパスを指定する。
+        //ベースとなるURLはJerseyTestによって設定済みなので
+        //ここではリソースクラスの@Pathに書かれたパスから指定する。
+        target("hello")
+        //クエリパラメータを設定する。
+        //URLの後ろにくっつく ?name=world の部分。
+                .queryParam("name", "world")
+                //ここまで組み立てたリソースに対してリクエストを行うよ！っていう印的な
+                .request()
+                //GETリクエストをして、レスポンスをStringで受け取る。
                 .get(String.class);
+
         assertThat(response, is("Hello, world!"));
     }
 
