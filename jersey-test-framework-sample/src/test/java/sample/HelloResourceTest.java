@@ -54,4 +54,13 @@ public class HelloResourceTest extends JerseyTest {
         //簡単です。
         return new ResourceConfig(HelloResource.class);
     }
+
+    //    @Test
+    //    public void sleep() throws Exception {
+    //        //ここで書き出されたベースURLに hello?name=world
+    //        //を付けたURLをブラウザで開こう！
+    //        System.out.println(getBaseUri());
+    //        //( ˘ω˘)ｽﾔｧ
+    //        Thread.sleep(Long.MAX_VALUE);
+    //    }
 }
