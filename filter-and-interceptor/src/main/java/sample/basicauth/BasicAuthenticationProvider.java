@@ -14,6 +14,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.Provider;
 
+/**
+ * ContainerRequestFilterを使ってBasic認証
+ *
+ */
 @Provider
 @Priority(Priorities.AUTHENTICATION)
 public class BasicAuthenticationProvider implements ContainerRequestFilter {
