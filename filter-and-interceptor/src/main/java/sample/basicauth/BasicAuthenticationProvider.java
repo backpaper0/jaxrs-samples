@@ -1,6 +1,7 @@
 package sample.basicauth;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,15 +36,27 @@ public class BasicAuthenticationProvider implements ContainerRequestFilter {
         String authorization = requestContext
                 .getHeaderString(HttpHeaders.AUTHORIZATION);
         if (authorization != null) {
+
+            //次のようなリクエストヘッダが送られてくるから
+            //Base64でデコードして ユーザー名:パスワード を得る。
+            //Authorization: Basic YmFja3BhcGVyMDpzZWNyZXQ=
+
             Matcher m = credentialsPattern.matcher(authorization);
             if (m.matches()) {
-                String credentials = new String(Base64.getDecoder().decode(
-                        m.group(1)));
+
+                String credentialsEncodedBase64 = m.group(1);
+                byte[] decoded = Base64.getDecoder().decode(
+                        credentialsEncodedBase64);
+                String credentials = new String(decoded, StandardCharsets.UTF_8);
+
                 if (credentials.equals(username + ":" + password)) {
+                    //認証成功！
                     return;
                 }
             }
         }
+
+        //認証失敗(´;ω;`)
 
         Response response = Response.status(Status.UNAUTHORIZED)
                 .header(HttpHeaders.WWW_AUTHENTICATE, "Basic Realm=\"(-_-)\"")
