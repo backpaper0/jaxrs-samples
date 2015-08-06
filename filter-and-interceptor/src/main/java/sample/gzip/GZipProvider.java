@@ -18,6 +18,9 @@ public class GZipProvider implements ContainerResponseFilter, WriterInterceptor 
     public void filter(ContainerRequestContext requestContext,
             ContainerResponseContext responseContext) throws IOException {
 
+        //エンティティボディがあり、リクエストヘッダの
+        //Accept-EncodingにgzipがあればGZip圧縮する。
+
         if (responseContext.getEntity() == null) {
             return;
         }
