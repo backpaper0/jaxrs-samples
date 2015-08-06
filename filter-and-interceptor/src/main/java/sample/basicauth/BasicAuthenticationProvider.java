@@ -29,6 +29,16 @@ public class BasicAuthenticationProvider implements ContainerRequestFilter {
     private String username = "backpaper0";
     private String password = "secret";
 
+    /*
+     * 実装するにあたって次のドキュメントを参考にしました。
+     * 
+     * Basic認証 - Wikipedia
+     *     https://ja.wikipedia.org/wiki/Basic%E8%AA%8D%E8%A8%BC
+     * RFC 2617 HTTP Authentication: Basic and Digest Access Authentication
+     *     https://www.ietf.org/rfc/rfc2617.txt
+     * RFC 2617の日本語訳
+     *     http://www.eonet.ne.jp/~h-hash/rfc_ja/rfc2617.ja.html
+     */
     @Override
     public void filter(ContainerRequestContext requestContext)
             throws IOException {
