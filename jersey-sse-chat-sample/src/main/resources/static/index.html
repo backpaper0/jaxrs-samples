@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jersey Server Side Events (SSE) SAMPLE</title>
+        <script type="text/javascript" src="/knockout-min.js"></script>
+        <script type="text/javascript" src="/superagent.min.js"></script>
+    </head>
+    <body>
+
+        <p>
+        <input type="text" data-bind="value: name, disable: joined"/>
+        <input type="button" data-bind="click: join, value: action"/>
+        </p>
+
+        <hr/>
+
+        <p>
+        <textarea data-bind="value: message"></textarea>
+        <input type="button" value="Send" data-bind="click: send"/>
+        </p>
+
+        <dl data-bind="foreach: messages">
+            <dt data-bind="text: name"></dt>
+            <dd data-bind="text: message"></dd>
+        </dl>
+
+        <script type="text/javascript">
+var es;
+var vm = {
+    name: ko.observable(""),
+    joined: ko.observable(false),
+    join: function() {
+        if (vm.joined()) {
+            es.close();
+            es = null;
+            vm.joined(false);
+            vm.action("Join");
+        } else {
+            es = new EventSource("/chat");
+            es.addEventListener("message", function (event) {
+                vm.messages.push(JSON.parse(event.data));
+            });
+            vm.joined(true);
+            vm.action("Leave");
+        }
+    },
+    action: ko.observable("Join"),
+    message: ko.observable(""),
+    send: function() {
+        superagent.post("/chat").send({
+            name: vm.name(),
+            message: vm.message()
+        }).end(function() {
+            vm.message("");
+        });
+    },
+    messages: ko.observableArray([])
+};
+ko.applyBindings(vm);
+        </script>
+    </body>
+</html>
