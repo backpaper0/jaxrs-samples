@@ -1,15 +1,14 @@
 import groovy.io.*
 import java.util.regex.*
 
-if (args.length < 2) {
-    println 'Usage: groovy change-jersey-version.groovy <old> <new>'
+if (args.length < 1) {
+    println 'Usage: groovy change-jersey-version.groovy <new version>'
     return
 }
 
-def oldVersion = args[0]
-def newVersion = args[1]
+def newVersion = args[0]
 
-def p = Pattern.compile("(.*jersey.*:)${oldVersion}('.*)")
+def p = Pattern.compile(/([^']+'org\.glassfish\.jersey[^:]*:[^:]+:).+(')/)
 
 new File('.').traverse(nameFilter: 'build.gradle') {
     def lines = new ArrayList()
