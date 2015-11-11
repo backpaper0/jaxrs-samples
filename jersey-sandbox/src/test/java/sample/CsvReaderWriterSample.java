@@ -53,12 +53,15 @@ public class CsvReaderWriterSample extends JerseyTest {
         }
     }
 
+    //Conent-Typeがtext/csvなエンティティに適用される
+    //リクエストに含まれるエンティティに適用されるので@Consumesを使用する
     @Consumes("text/csv")
     public static class CsvReader implements MessageBodyReader<String[][]> {
 
         @Override
         public boolean isReadable(Class<?> type, Type genericType,
                 Annotation[] annotations, MediaType mediaType) {
+            //このMessageBodyReaderを適用するかどうか細かく設定できる
             return true;
         }
 
@@ -75,6 +78,8 @@ public class CsvReaderWriterSample extends JerseyTest {
         }
     }
 
+    //Conent-Typeがtext/csvなエンティティに適用される
+    //レスポンスに含まれるエンティティに適用されるので@Producesを使用する
     @Produces("text/csv")
     public static class CsvWriter implements MessageBodyWriter<String[][]> {
 
@@ -85,6 +90,7 @@ public class CsvReaderWriterSample extends JerseyTest {
         @Override
         public boolean isWriteable(Class<?> type, Type genericType,
                 Annotation[] annotations, MediaType mediaType) {
+            //このMessageBodyWriterを適用するかどうか細かく設定できる
             return true;
         }
 
