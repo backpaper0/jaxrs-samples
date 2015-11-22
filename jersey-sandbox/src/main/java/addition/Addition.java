@@ -5,7 +5,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
-@Path("/addition")
+@Path("addition")
 public class Addition {
     @GET
     @Produces("text/plain")

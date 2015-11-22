@@ -13,7 +13,7 @@ public class AdditionTest extends JerseyTest {
 
     @Test
     public void test() throws Exception {
-        int result = target("/addition").queryParam("a", 1).queryParam("b", 2)
+        int result = target("addition").queryParam("a", 1).queryParam("b", 2)
                 .request().get(int.class);
         assertThat(result, is(3));
     }

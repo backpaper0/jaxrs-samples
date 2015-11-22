@@ -43,7 +43,7 @@ public class CsvReaderWriterSample extends JerseyTest {
         return new ResourceConfig(Csv.class, CsvReader.class, CsvWriter.class);
     }
 
-    @Path("/csv")
+    @Path("csv")
     public static class Csv {
         @POST
         @Consumes("text/csv")

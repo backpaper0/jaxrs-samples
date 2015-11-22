@@ -17,7 +17,7 @@ public class ApplicationSubClassSample extends JerseyTest {
 
     @Test
     public void test() throws Exception {
-        String response = target("/foo").request().get(String.class);
+        String response = target("foo").request().get(String.class);
         assertThat(response, is("foo"));
     }
 
@@ -39,7 +39,7 @@ public class ApplicationSubClassSample extends JerseyTest {
         }
     }
 
-    @Path("/foo")
+    @Path("foo")
     public static class Foo {
         @GET
         public String get() {
