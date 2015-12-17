@@ -1,0 +1,44 @@
+package app;
+
+import java.io.FilterOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.ext.Provider;
+import javax.ws.rs.ext.WriterInterceptor;
+import javax.ws.rs.ext.WriterInterceptorContext;
+
+@Provider
+public class ViaTempFile implements WriterInterceptor {
+
+    @Override
+    public void aroundWriteTo(WriterInterceptorContext context)
+            throws IOException, WebApplicationException {
+
+        if (context.getMediaType().isCompatible(
+                MediaType.valueOf("application/force-download"))) {
+            OutputStream originalOut = context.getOutputStream();
+            Path tempFile = Files.createTempFile("download-", ".tmp");
+            OutputStream fileOut = Files.newOutputStream(tempFile);
+            context.setOutputStream(new FilterOutputStream(fileOut) {
+
+                @Override
+                public void close() throws IOException {
+                    super.close();
+                    context.getHeaders().putSingle(HttpHeaders.CONTENT_LENGTH,
+                            Files.size(tempFile));
+                    Files.copy(tempFile, originalOut);
+                    originalOut.close();
+                    Files.delete(tempFile);
+                }
+            });
+        }
+
+        context.proceed();
+    }
+}
