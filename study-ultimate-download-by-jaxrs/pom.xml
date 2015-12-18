@@ -43,6 +43,24 @@
                             <version>0.1.0</version>
                         </server>
                     </servers>
+                    <features>
+                        <feature>
+                            <groupId>net.unit8.waitt.feature</groupId>
+                            <artifactId>waitt-coverage</artifactId>
+                            <version>0.1.0</version>
+                        </feature>
+                        <feature>
+                            <groupId>net.unit8.waitt.feature</groupId>
+                            <artifactId>waitt-dashboard</artifactId>
+                            <version>0.1.0</version>
+                            <type>war</type>
+                        </feature>
+                        <feature>
+                            <groupId>net.unit8.waitt.feature</groupId>
+                            <artifactId>waitt-admin</artifactId>
+                            <version>0.1.0</version>
+                        </feature>
+                    </features>
                 </configuration>
             </plugin>
         </plugins>
