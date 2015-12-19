@@ -18,4 +18,10 @@ public class DownloadResource {
                         "attachment; filename=\"" + filename + "\"")
                 .build();
     }
+
+    @GET
+    @Path("async/prepare")
+    public void prepare() {
+        System.out.println("prepare");
+    }
 }

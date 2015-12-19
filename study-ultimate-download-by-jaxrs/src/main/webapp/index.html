@@ -2,8 +2,17 @@
 <html>
     <head>
         <title></title>
+        <script src="webjars/superagent/1.4.0/superagent.min.js"></script>
     </head>
     <body>
         <p><a href="app/download" download="sample.txt">Download</a></p>
+
+        <p><button onclick="downloadAsync()">Download(Async)</button>
+        <script>
+        function downloadAsync() {
+            superagent.get('app/download/async/prepare').end(function() {
+            });
+        }
+        </script>
     </body>
 </html>
