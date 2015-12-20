@@ -9,10 +9,13 @@
 
         <p><button onclick="downloadAsync()">Download(Async)</button>
         <script>
-        function downloadAsync() {
-            superagent.get('app/download/async/prepare').end(function() {
-            });
-        }
+function downloadAsync() {
+    var es = new EventSource('app/download/async/prepare');
+    es.addEventListener('id', function (event) {
+        location.href = 'app/download/async/' + event.data;
+        es.close();
+    });
+}
         </script>
     </body>
 </html>
