@@ -10,6 +10,10 @@ import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.ext.Provider;
 
+/**
+ * Content-Dispositionのfilenameをエンコードするフィルタ。
+ *
+ */
 @Provider
 public class FileNameEncoder implements ContainerResponseFilter {
 

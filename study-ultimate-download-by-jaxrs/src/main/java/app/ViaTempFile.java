@@ -15,6 +15,11 @@ import javax.ws.rs.ext.Provider;
 import javax.ws.rs.ext.WriterInterceptor;
 import javax.ws.rs.ext.WriterInterceptorContext;
 
+/**
+ * application/force-downloadの場合に一時ファイルを経由させるインターセプター。
+ *
+ * TODO レジュームを組み込む。そうでないと一時ファイルを経由する意味が無い気がする。
+ */
 @Provider
 public class ViaTempFile implements WriterInterceptor {
 
