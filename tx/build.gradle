@@ -19,8 +19,8 @@ dependencies {
     testRuntime 'org.jboss.arquillian.container:arquillian-glassfish-embedded-3.1:1.0.0.CR4'
     testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.10.Final'
     testCompile 'junit:junit:4.12'
-//    testCompile 'org.glassfish.jersey.containers.glassfish:jersey-gf-ejb:2.22.1'
-//    testCompile 'org.glassfish.jersey.ext.cdi:jersey-cdi1x-transaction:2.22.1'
+//    testCompile 'org.glassfish.jersey.containers.glassfish:jersey-gf-ejb:2.22.2'
+//    testCompile 'org.glassfish.jersey.ext.cdi:jersey-cdi1x-transaction:2.22.2'
 }
 
 task run(type:Exec) {
