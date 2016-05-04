@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
     providedCompile 'javax.ws.rs:javax.ws.rs-api:2.0.1'
+    providedCompile 'javax.annotation:javax.annotation-api:1.2'
     testCompile 'junit:junit:4.12'
     testCompile 'org.glassfish.jersey.test-framework:jersey-test-framework-core:2.22.2'
     testRuntime 'org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-jetty:2.22.2'
