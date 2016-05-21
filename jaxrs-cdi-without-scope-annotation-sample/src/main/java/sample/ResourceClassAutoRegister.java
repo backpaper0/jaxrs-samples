@@ -27,6 +27,16 @@ public class ResourceClassAutoRegister implements Extension {
         context.addAnnotatedType(new AnnotatedTypeImpl<>(type), id);
     }
 
+    /*
+     * すべてのリソースクラスを登録するようなまどろっこしい真似をしなくても
+     * BeforeBeanDiscovery.addStereotypeを使えば良いと思ったんだけど、
+     * バグってるっぽい、、、
+     * https://issues.jboss.org/browse/WELD-1624
+     */
+    //    public void addPathAsStereotype(@Observes BeforeBeanDiscovery context, BeanManager bm) {
+    //        context.addStereotype(ResourceClass.class, new StereotypeImpl(), new RequestScopedImpl());
+    //    }
+
     private static class AnnotatedTypeImpl<X> implements AnnotatedType<X> {
 
         private final AnnotatedType<X> type;
