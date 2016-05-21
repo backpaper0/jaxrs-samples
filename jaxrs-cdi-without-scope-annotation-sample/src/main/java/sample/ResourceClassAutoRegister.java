@@ -20,6 +20,8 @@ import javax.enterprise.util.AnnotationLiteral;
 public class ResourceClassAutoRegister implements Extension {
 
     public void register(@Observes AfterTypeDiscovery context, BeanManager bm) {
+        // HelloApiクラスをハードコーディングしてるから汎用的ではない！！！
+        // リソースクラスをスキャンする方法を考えないといけない〜
         AnnotatedType<?> type = bm.createAnnotatedType(HelloApi.class);
         String id = HelloApi.class.getName();
         context.addAnnotatedType(new AnnotatedTypeImpl<>(type), id);
