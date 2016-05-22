@@ -34,7 +34,7 @@ public class ResourceClassAutoRegister implements Extension {
      * https://issues.jboss.org/browse/WELD-1624
      */
     //    public void addPathAsStereotype(@Observes BeforeBeanDiscovery context, BeanManager bm) {
-    //        context.addStereotype(ResourceClass.class, new StereotypeImpl(), new RequestScopedImpl());
+    //        context.addStereotype(Path.class, new StereotypeImpl(), new RequestScopedImpl());
     //    }
 
     private static class AnnotatedTypeImpl<X> implements AnnotatedType<X> {
