@@ -1,0 +1,22 @@
+ext {
+    guiceVersion = '4.0'
+    jerseyVersion = '2.23'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = '1.7'
+    targetCompatibility = '1.7'
+    options.encoding = 'Windows-31J'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile "org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-grizzly2:${jerseyVersion}"
+    compile "com.google.inject:guice:${guiceVersion}"
+}
