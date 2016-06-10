@@ -12,6 +12,6 @@ repositories {
 }
 
 dependencies {
-    compile 'org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.23'
-    compile 'org.glassfish.jersey.ext.rx:jersey-rx-client-java8:2.23'
+    compile 'org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.23.1'
+    compile 'org.glassfish.jersey.ext.rx:jersey-rx-client-java8:2.23.1'
 }

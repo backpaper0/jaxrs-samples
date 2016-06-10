@@ -1,3 +1,8 @@
+ext {
+    javaeeVersion = '7.0'
+    payaraVersion = '4.1.1.162'
+}
+
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse'
@@ -16,14 +21,14 @@ repositories {
 }
 
 dependencies {
-    providedCompile 'javax:javaee-api:7.0'
-    archives 'fish.payara.extras:payara-micro:4.1.1.161.1'
+    providedCompile "javax:javaee-api:${javaeeVersion}"
+    archives "fish.payara.extras:payara-micro:${payaraVersion}"
 }
 
 task run(type:Exec) {
-    def payaraJar = configurations.archives.find { it.name ==~ /payara-micro.*/ }
+    def payaraJar = configurations.archives.find { it.name == "payara-micro-${payaraVersion}.jar" }
     def warFile = war.archivePath
-    commandLine 'java', '-jar', "$payaraJar", '--deploy', "$warFile"
+    commandLine 'java', '-jar', "${payaraJar}", '--noCluster', '--deploy', "${warFile}"
 }
 
 run.dependsOn war

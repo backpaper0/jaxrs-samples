@@ -1,15 +1,15 @@
 ext {
     guiceVersion = '4.0'
-    jerseyVersion = '2.23'
+    jerseyVersion = '2.23.1'
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
 tasks.withType(JavaCompile) {
-    sourceCompatibility = '1.7'
-    targetCompatibility = '1.7'
-    options.encoding = 'Windows-31J'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+    options.encoding = 'UTF-8'
 }
 
 repositories {

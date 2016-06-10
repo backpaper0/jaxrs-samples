@@ -1,3 +1,8 @@
+ext {
+    javaeeVersion = '7.0'
+    payaraVersion = '4.1.1.162'
+}
+
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse'
@@ -14,19 +19,19 @@ repositories {
 }
 
 dependencies {
-    providedCompile 'javax:javaee-api:7.0'
-    testRuntime 'fish.payara.extras:payara-micro:4.1.1.161.1'
+    providedCompile "javax:javaee-api:${javaeeVersion}"
+    testRuntime "fish.payara.extras:payara-micro:${payaraVersion}"
     testRuntime 'org.jboss.arquillian.container:arquillian-glassfish-embedded-3.1:1.0.0.CR4'
     testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.10.Final'
     testCompile 'junit:junit:4.12'
-//    testCompile 'org.glassfish.jersey.containers.glassfish:jersey-gf-ejb:2.23'
-//    testCompile 'org.glassfish.jersey.ext.cdi:jersey-cdi1x-transaction:2.23'
+//    testCompile 'org.glassfish.jersey.containers.glassfish:jersey-gf-ejb:2.23.1'
+//    testCompile 'org.glassfish.jersey.ext.cdi:jersey-cdi1x-transaction:2.23.1'
 }
 
 task run(type:Exec) {
-    def payaraJar = configurations.testRuntime.find { it.name ==~ /payara-micro.*/ }
+    def payaraJar = configurations.testRuntime.find { it.name == "payara-micro-${payaraVersion}.jar" }
     def warFile = war.archivePath
-    commandLine 'java', '-jar', "$payaraJar", '--deploy', "$warFile"
+    commandLine 'java', '-jar', "${payaraJar}", '--noCluster', '--deploy', "${warFile}"
 }
 
 run.dependsOn war
